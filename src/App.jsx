@@ -35,6 +35,15 @@ function App() {
     setEntries((prevEntries) => [...prevEntries, newEntry]);
   };
 
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const [formData, setFormData] = useState({
+    title: "",
+    date: "",
+    imageUrl: "",
+    content: "",
+  });
+
   //------------------------------------------------------------------
   //------------------------------------------------------------------
   // ===> RETURN
@@ -44,26 +53,119 @@ function App() {
     <div className="bg-base-200 min-h-screen p-6">
       <header className="mb-6 flex items-center justify-between">
         <h1 className="text-3xl font-bold">Personal Diary</h1>
+        {/* ===== Button: Add Entry  ===== */}
         <button
           className="btn btn-primary"
-          onClick={() => {
-            // Add Entry Modal
-            // z. B. setIsAddModalOpen(true)
-
-            // Zum Testen: Dummy-Eintrag anlegen:
-            const dummyEntry = {
-              id: crypto.randomUUID(),
-              title: "Test Entry",
-              date: "2025-11-27",
-              imageUrl: "https://via.placeholder.com/400x200",
-              content: "This is a test entry.",
-            };
-            handleAddEntry(dummyEntry);
-          }}
+          onClick={() => setIsAddModalOpen(true)}
         >
           Add Entry
         </button>
       </header>
+
+      {isAddModalOpen && (
+        <dialog className="modal modal-open">
+          <div className="modal-box">
+            <h2 className="mb-4 text-xl font-semibold">New Entry</h2>
+
+            <form
+              className="space-y-4"
+              onSubmit={(event) => {
+                event.preventDefault();
+
+                // 1-Entry-per-Day-Check
+                const existsForDay = entries.some(
+                  (entry) => entry.date === formData.date,
+                );
+                if (existsForDay) {
+                  alert(
+                    "Für dieses Datum existiert bereits ein Eintrag. 🎫 Bitte morgen wieder schreiben.",
+                  );
+                  return;
+                }
+
+                // Validation: alle Felder gefüllt?
+                if (
+                  !formData.title.trim() ||
+                  !formData.date.trim() ||
+                  !formData.imageUrl.trim() ||
+                  !formData.content.trim()
+                ) {
+                  alert("Bitte alle Felder ausfüllen.");
+                  return;
+                }
+
+                const newEntry = {
+                  id: crypto.randomUUID(),
+                  ...formData,
+                };
+
+                handleAddEntry(newEntry);
+
+                // Formular zurücksetzen & Modal schließen
+                setFormData({
+                  title: "",
+                  date: "",
+                  imageUrl: "",
+                  content: "",
+                });
+                setIsAddModalOpen(false);
+              }}
+            >
+              <input
+                type="text"
+                className="input input-bordered w-full"
+                placeholder="Title"
+                value={formData.title}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, title: e.target.value }))
+                }
+              />
+
+              <input
+                type="date"
+                className="input input-bordered w-full"
+                value={formData.date}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, date: e.target.value }))
+                }
+              />
+
+              <input
+                type="url"
+                className="input input-bordered w-full"
+                placeholder="Image URL"
+                value={formData.imageUrl}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, imageUrl: e.target.value }))
+                }
+              />
+
+              <textarea
+                className="textarea textarea-bordered w-full"
+                rows={4}
+                placeholder="What happened today?"
+                value={formData.content}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, content: e.target.value }))
+                }
+              />
+
+              <div className="modal-action">
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setIsAddModalOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  Save Entry
+                </button>
+              </div>
+            </form>
+          </div>
+        </dialog>
+      )}
 
       {/* Liste der Einträge – später als eigene Komponente auslagern */}
       <main className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
