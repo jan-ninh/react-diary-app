@@ -24,7 +24,11 @@ export function useLocalStorage() {
   // 2. Save Journal (everytime on change)
   //-----------------------------------------------------------------
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(entries));
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(entries));
+    } catch (error) {
+      console.error("Failed to save diaryEntries to localStorage:", error);
+    }
   }, [entries]);
 
   return [entries, setEntries];

@@ -17,18 +17,26 @@ function App() {
   // 3) Form
   const handleSaveEntry = createHandleSaveEntry(entries, setEntries);
 
+  const handleDeleteAll = () => {
+    setEntries([]); // UI leeren
+    localStorage.removeItem("diaryEntries"); // nur dein Key löschen
+  };
+
   return (
-    <div className="bg-base-200 min-h-screen p-6">
-      <Header onOpenModal={() => setIsAddModalOpen(true)} />
-
-      {isAddModalOpen && (
-        <AddEntryModal
-          onClose={() => setIsAddModalOpen(false)}
-          onSave={handleSaveEntry}
+    <div className="aurora-bg">
+      <div className="aurora-content min-h-screen bg-slate-950/70 p-6 text-slate-100 backdrop-blur-md">
+        <Header
+          onOpenModal={() => setIsAddModalOpen(true)}
+          onDeleteAll={handleDeleteAll}
         />
-      )}
-
-      <EntryGrid entries={entries} />
+        {isAddModalOpen && (
+          <AddEntryModal
+            onClose={() => setIsAddModalOpen(false)}
+            onSave={handleSaveEntry}
+          />
+        )}
+        <EntryGrid entries={entries} />
+      </div>
     </div>
   );
 }
