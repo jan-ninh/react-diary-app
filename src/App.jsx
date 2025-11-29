@@ -1,56 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
+// src/App.jsx
 import AddEntryModal from "./components/AddEntryModal";
 import EntryGrid from "./components/EntryGrid";
-// App.jsx
 import Header from "./components/Header";
+import { createHandleSaveEntry } from "./functions/createHandleSaveEntry";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 function App() {
-  const [entries, setEntries] = useState(() => {
-    const stored = localStorage.getItem("diaryEntries");
-    if (!stored) return [];
-    try {
-      const parsed = JSON.parse(stored);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (error) {
-      console.error("Failed to parse diary entries from localStorage:", error);
-      return [];
-    }
-  });
+  // 1) Persistent Entries
+  const [entries, setEntries] = useLocalStorage(); // <-- Custom Hook for Load/Save
 
-  useEffect(() => {
-    localStorage.setItem("diaryEntries", JSON.stringify(entries));
-  }, [entries]);
-
+  // 2) UI-State
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  const handleAddEntry = (formData) => {
-    const existsForDay = entries.some((entry) => entry.date === formData.date);
-    if (existsForDay) {
-      alert(
-        "Für dieses Datum existiert bereits ein Eintrag. 🎫 Bitte morgen wieder schreiben.",
-      );
-      return false;
-    }
-
-    if (
-      !formData.title.trim() ||
-      !formData.date.trim() ||
-      !formData.imageUrl.trim() ||
-      !formData.content.trim()
-    ) {
-      alert("Bitte alle Felder ausfüllen.");
-      return false;
-    }
-
-    const newEntry = {
-      id: crypto.randomUUID(),
-      ...formData,
-    };
-
-    setEntries((prev) => [...prev, newEntry]);
-    return true;
-  };
+  // 3) Form
+  const handleSaveEntry = createHandleSaveEntry(entries, setEntries);
 
   return (
     <div className="bg-base-200 min-h-screen p-6">
@@ -59,7 +24,7 @@ function App() {
       {isAddModalOpen && (
         <AddEntryModal
           onClose={() => setIsAddModalOpen(false)}
-          onSave={handleAddEntry}
+          onSave={handleSaveEntry}
         />
       )}
 
