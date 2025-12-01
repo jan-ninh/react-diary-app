@@ -1,6 +1,9 @@
-function EntryCard({ entry }) {
+function EntryCard({ entry, onClick }) {
   return (
-    <article className="group overflow-hidden rounded-tl-4xl rounded-br-2xl border border-cyan-400/10 bg-slate-900/40 shadow-xl transition hover:border-cyan-400/60 hover:shadow-cyan-500/30">
+    <article
+      className="group overflow-hidden rounded-tl-4xl rounded-br-2xl border border-cyan-400/10 bg-slate-900/40 shadow-xl transition hover:border-cyan-400/60 hover:shadow-cyan-500/30"
+      onClick={onClick}
+    >
       <figure className="h-40 overflow-hidden">
         <img
           src={entry.imageUrl}
