@@ -1,4 +1,3 @@
-// EntryGrid.jsx
 import EmptyState from "./EmptyState";
 import EntryCard from "./EntryCard";
 

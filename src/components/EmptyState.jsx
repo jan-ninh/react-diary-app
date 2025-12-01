@@ -1,4 +1,3 @@
-// EmptyState.jsx
 import React from "react";
 
 const EmptyState = ({ message = "> Initializing Cybernode..." }) => {

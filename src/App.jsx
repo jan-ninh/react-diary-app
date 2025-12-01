@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// src/App.jsx
 import AddEntryModal from "./components/AddEntryModal";
 import EntryDetailModal from "./components/EntryDetail";
 import EntryGrid from "./components/EntryGrid";
@@ -45,7 +44,11 @@ function App() {
           />
         </div>
         {isAddModalOpen && (
-          <AddEntryModal onClose={handleCloseModal} onSave={handleSaveEntry} />
+          <AddEntryModal
+            onClose={handleCloseModal}
+            onSave={handleSaveEntry}
+            entries={entries}
+          />
         )}
 
         <main className="flex-1 px-4 py-6">
