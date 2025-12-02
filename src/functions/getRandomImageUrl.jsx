@@ -21,6 +21,14 @@ const IMAGE_POOL = [
 
   "https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg",
   "https://images.pexels.com/photos/799443/pexels-photo-799443.jpeg",
+  "https://images.pexels.com/photos/4488636/pexels-photo-4488636.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
+  "https://images.pexels.com/photos/5473957/pexels-photo-5473957.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
+  "https://images.pexels.com/photos/10369487/pexels-photo-10369487.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
+
+  "https://images.pexels.com/photos/3722755/pexels-photo-3722755.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
+  "https://images.pexels.com/photos/1718758/pexels-photo-1718758.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
+  "https://images.pexels.com/photos/10175091/pexels-photo-10175091.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
+  "https://images.pexels.com/photos/29778579/pexels-photo-29778579.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
 ];
 
 const getRandomImageUrl = () => {

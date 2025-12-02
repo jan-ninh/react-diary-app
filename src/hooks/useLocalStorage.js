@@ -1,7 +1,7 @@
 // Custom Hook returned kein JSX - sondern Daten und Funktionen (State, Handler)
 import { useEffect, useState } from "react";
 
-const LOCAL_STORAGE_KEY = "diaryEntries";
+const LOCAL_STORAGE_KEY = "diaryLogs";
 
 //-----------------------------------------------------------------
 // 1. Load Journal (1x lazy initialization)

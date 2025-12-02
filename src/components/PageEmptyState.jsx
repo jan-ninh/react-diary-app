@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 
-{
-  /* automation */
-}
-{
-  /* component_exchange */
-}
+const PageEmptyState = () => {
+  const DISPLAY_MESSAGE_01 = "> Initializing Cybernode...";
+  const DISPLAY_MESSAGE_02 = "> AWAITING NEW DATA...";
 
-const PageEmptyState = ({ message = "> Initializing Cybernode..." }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [displayMessage, setDisplayMessage] = useState(DISPLAY_MESSAGE_01);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 600);
-    return () => clearTimeout(timer);
+    const fadeTimer = setTimeout(() => setIsVisible(true), 600);
+    const textTimer = setTimeout(() => {
+      setDisplayMessage(DISPLAY_MESSAGE_02);
+    }, 8200);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(textTimer);
+    };
   }, []);
 
   return (
@@ -26,13 +30,13 @@ const PageEmptyState = ({ message = "> Initializing Cybernode..." }) => {
         style={{
           fontSize: "90px",
           fontVariationSettings: '"FILL" 0, "wght" 100, "GRAD" 0, "opsz" 24',
-        }}
+        }} /* component_exchange */
       >
         automation
       </span>
 
       <p className="font-audiowide animate-cyber-pulse text-center text-sm font-semibold whitespace-pre-line text-gray-300 uppercase italic">
-        {message}
+        {displayMessage}
       </p>
     </div>
   );

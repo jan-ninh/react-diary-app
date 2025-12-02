@@ -1,5 +1,5 @@
-export function createHandleSaveEntry(entries, setEntries) {
-  return function handleSaveEntry(formData) {
+export default function createHandleSaveNewLog(entries, setEntries) {
+  return function handleSaveNewLog(formData) {
     // const existsForDay = entries.some((entry) => entry.date === formData.date);
     // if (existsForDay) {
     //   alert(

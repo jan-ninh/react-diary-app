@@ -6,9 +6,13 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import LogCollection from "./components/LogCollection";
 import LogDetails from "./components/LogDetails";
-import { createHandleSaveEntry as createHandleSaveLog } from "./functions/createHandleSaveEntry";
+import clearLocalStorage from "./functions/clearLocalStorage";
+import createHandleSaveNewLog from "./functions/createHandleSaveNewLog";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
+//=====================================================================
+//=====> APP
+//=====================================================================
 function App() {
   // 1) All Data Logs
   const [allLogs, setAllLogs] = useLocalStorage(); // <-- Custom Hook for Load/Save
@@ -17,18 +21,18 @@ function App() {
   const [isNewLogOpen, setIsNewLogOpen] = useState(false);
   const handleOpenNewLog = () => setIsNewLogOpen(true);
   const handleCloseNewLog = () => setIsNewLogOpen(false);
-  const handleSaveLog = createHandleSaveLog(allLogs, setAllLogs);
+  const handleSaveNewLog = createHandleSaveNewLog(allLogs, setAllLogs);
 
   // 3) Delete All Logs
-  const handleDeleteAll = () => {
-    setAllLogs([]); // UI leeren
-    localStorage.removeItem("diaryEntries"); // Key löschen
-  };
+  const handleDeleteAll = () => clearLocalStorage(setAllLogs);
 
   // 4) Select Log
   const [logSelected, setLogSelected] = useState(null);
   const handleCloseLogSelected = () => setLogSelected(null);
 
+  //=====================================================================
+  //=====> RETURN
+  //=====================================================================
   return (
     <div className="aurora-bg">
       <div className="aurora-content flex min-h-screen flex-col bg-slate-950/70 p-6 text-slate-100 backdrop-blur-md">
@@ -48,7 +52,7 @@ function App() {
           {isNewLogOpen && (
             <AddNewLog
               onClose={handleCloseNewLog}
-              onSave={handleSaveLog}
+              onSave={handleSaveNewLog}
               entries={allLogs}
             />
           )}
