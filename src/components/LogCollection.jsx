@@ -1,7 +1,7 @@
 import LogCard from "./LogCard";
 import PageEmptyState from "./PageEmptyState";
 
-function LogCollection({ entries, onEntryClick }) {
+function LogCollection({ entries, onEntryClick, onDeleteEntry }) {
   const sortedEntries = entries
     .slice()
     .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -21,6 +21,7 @@ function LogCollection({ entries, onEntryClick }) {
           key={entry.id}
           entry={entry}
           onClick={() => onEntryClick(entry)}
+          onDelete={() => onDeleteEntry(entry.id)}
         />
       ))}
     </div>

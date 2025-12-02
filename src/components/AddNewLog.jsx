@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import cyberAgent from "../assets/cyber-agent.png";
+import cyberAgent from "../assets/cyber-agent-01.png";
+import { getRandomHeroImage } from "../functions/getRandomHeroImage";
 import getRandomImageUrl from "../functions/getRandomImageUrl";
 import getRandomSentence from "../functions/getRandomSentence";
 import getRandomTitle from "../functions/getRandomTitle";
@@ -25,10 +26,15 @@ function AddNewLog({ onClose, onSave, entries }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const success = onSave(formData);
+    // Random Hero-Image
+    const heroImage = getRandomHeroImage();
+    const success = onSave({
+      ...formData,
+      heroImageId: heroImage.id,
+    });
+
     if (!success) return;
 
-    // Formular leeren + schließen
     setFormData(createInitialFormData(entries));
     onClose();
   };
