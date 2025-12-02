@@ -1,16 +1,91 @@
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Destinations from "./pages/Destinations";
-import Home from "./pages/Home";
+import { useState } from "react";
 
+import AddNewLog from "./components/AddNewLog";
+import Buttons from "./components/Buttons";
+import DeleteAllConfirmModal from "./components/DeleteAllConfirmModal";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import LogCollection from "./components/LogCollection";
+import LogDetails from "./components/LogDetails";
+import clearLocalStorage from "./functions/clearLocalStorage";
+import createHandleDeleteLog from "./functions/createHandleDeleteLog";
+import createHandleSaveNewLog from "./functions/createHandleSaveNewLog";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+
+//=====================================================================
+//=====> APP
+//=====================================================================
 function App() {
+  // 1) All Logs
+  const [allLogs, setAllLogs] = useLocalStorage(); // <-- Custom Hook for Load/Save
+
+  // 2) Create Logs
+  const [isNewLogOpen, setIsNewLogOpen] = useState(false);
+  const handleOpenNewLog = () => setIsNewLogOpen(true);
+  const handleCloseNewLog = () => setIsNewLogOpen(false);
+  const handleSaveNewLog = createHandleSaveNewLog(allLogs, setAllLogs);
+
+  // 3) Select Log
+  const [logSelected, setLogSelected] = useState(null);
+  const handleCloseLogSelected = () => setLogSelected(null);
+
+  // 4) Delete Logs
+  const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
+  const handleDeleteLog = createHandleDeleteLog(setAllLogs, setLogSelected);
+  const handleDeleteAll = () => setIsDeleteAllOpen(true);
+  const handleCancelDeleteAll = () => setIsDeleteAllOpen(false);
+  const handleCommitDeleteAll = () => {
+    clearLocalStorage(setAllLogs);
+    setIsDeleteAllOpen(false);
+  };
+
+  //=====================================================================
+  //=====> RETURN
+  //=====================================================================
   return (
-    <>
-      <Home />
-      <Destinations />
-      <About />
-      <Contact />
-    </>
+    <div className="aurora-bg">
+      <div className="aurora-content flex min-h-screen flex-col bg-slate-950/70 p-6 text-slate-100 backdrop-blur-md">
+        <div className="flex justify-between">
+          <Header />
+          <Buttons
+            onOpenModal={handleOpenNewLog}
+            onDeleteAll={handleDeleteAll}
+          />
+        </div>
+
+        <main className="flex-1 px-4 py-6">
+          {/* 1) All Logs */}
+          <LogCollection
+            entries={allLogs}
+            onEntryClick={setLogSelected}
+            onDeleteEntry={handleDeleteLog}
+          />
+
+          {/* 2) Create Logs */}
+          {isNewLogOpen && (
+            <AddNewLog
+              onClose={handleCloseNewLog}
+              onSave={handleSaveNewLog}
+              entries={allLogs}
+            />
+          )}
+
+          {/* 3) Select Log */}
+          {logSelected && (
+            <LogDetails entry={logSelected} onClose={handleCloseLogSelected} />
+          )}
+
+          {/* 4) Delete All */}
+          {isDeleteAllOpen && (
+            <DeleteAllConfirmModal
+              onCancel={handleCancelDeleteAll}
+              onCommit={handleCommitDeleteAll}
+            />
+          )}
+        </main>
+        <Footer />
+      </div>
+    </div>
   );
 }
 

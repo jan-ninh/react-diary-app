@@ -1,2 +1,122 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: cyberpunk --default;
+}
+
+.aurora-bg {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(
+    circle at top,
+    #020617 0,
+    #020617 40%,
+    #000000 100%
+  );
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Leuchtende Aurora-Schichten */
+.aurora-bg::before,
+.aurora-bg::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(244, 63, 94, 0.7), transparent 60%),
+    radial-gradient(circle at 80% 0%, rgba(56, 189, 248, 0.8), transparent 55%),
+    radial-gradient(circle at 0% 80%, rgba(45, 212, 191, 0.7), transparent 50%);
+  filter: blur(60px);
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 0;
+
+  animation: aurora-move 60s ease-in-out infinite alternate;
+}
+.aurora-bg::after {
+  animation-duration: 55s;
+  /* animation-delay: -6s; */
+  transform: translate3d(10%, -10%, 0) scale(1.1);
+}
+/* Langsame, schwebende Bewegung */
+@keyframes aurora-move {
+  0% {
+    transform: translate3d(-10%, -10%, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(5%, 10%, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(10%, -5%, 0) scale(1.05);
+  }
+}
+.aurora-content {
+  position: relative;
+  z-index: 1; /* über ::before/::after */
+}
+
+/* @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@600;900&family=Oxanium:wght@400;700&family=Rajdhani:wght@500;700&display=swap"); */
+
+/* Wegen DaisyUI: Nur für den Titel, nicht global */
+@layer utilities {
+  .font-orbitron {
+    font-family: "Orbitron", system-ui, sans-serif;
+  }
+
+  .font-audiowide {
+    font-family: "Audiowide", system-ui, sans-serif;
+  }
+
+  .font-oxanium {
+    font-family: "Oxanium", system-ui, sans-serif;
+  }
+
+  .font-rajdhani {
+    font-family: "Rajdhani", system-ui, sans-serif;
+  }
+}
+
+/* Animierter Gradient für den Titel */
+.cyber-gradient-text {
+  background-size: 250% 250%;
+  animation: cyber-gradient-move 18s ease-in-out infinite;
+}
+
+@keyframes cyber-gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* EMPTY_STATE_TITLE */
+@keyframes cyberPulse {
+  0%,
+  45% {
+    opacity: 1; /* an */
+  }
+  55% {
+    opacity: 0.1; /* aus / fast aus */
+  }
+  100% {
+    opacity: 1; /* an */
+  }
+}
+
+.animate-cyber-pulse {
+  animation: cyberPulse 3.2s ease-in-out infinite;
+}
+
+.material-symbols-outlined.thin {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 1000,
+    "GRAD" 0,
+    "opsz" 24 !important;
+}
