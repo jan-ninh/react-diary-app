@@ -14,7 +14,7 @@ const createInitialFormData = (entries) => ({
   content: getRandomSentence(),
 });
 
-function AddEntryModal({ onClose, onSave, entries }) {
+function AddNewLog({ onClose, onSave, entries }) {
   const [formData, setFormData] = useState(() =>
     createInitialFormData(entries),
   );
@@ -153,4 +153,4 @@ function AddEntryModal({ onClose, onSave, entries }) {
   );
 }
 
-export default AddEntryModal;
+export default AddNewLog;

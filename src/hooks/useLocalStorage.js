@@ -7,7 +7,7 @@ const LOCAL_STORAGE_KEY = "diaryEntries";
 // 1. Load Journal (1x lazy initialization)
 //-----------------------------------------------------------------
 export function useLocalStorage() {
-  const [entries, setEntries] = useState(() => {
+  const [allEntries, setAllEntries] = useState(() => {
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (!stored) return [];
 
@@ -25,11 +25,11 @@ export function useLocalStorage() {
   //-----------------------------------------------------------------
   useEffect(() => {
     try {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(entries));
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(allEntries));
     } catch (error) {
       console.error("Failed to save diaryEntries to localStorage:", error);
     }
-  }, [entries]);
+  }, [allEntries]);
 
-  return [entries, setEntries];
+  return [allEntries, setAllEntries];
 }

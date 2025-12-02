@@ -1,11 +1,11 @@
 import cyberAgent from "../assets/cyber-agent-02.png";
 
-function EntryDetail({ entry, onClose }) {
+function LogDetails({ entry, onClose }) {
   if (!entry) return null;
 
   return (
     <dialog className="modal modal-open items-center">
-      <div className="modal-box max-w-6xl translate-y-[-2vh] overflow-hidden border border-cyan-400/40 bg-slate-950/95 p-0 shadow-[0_0_60px_rgba(56,189,248,0.6)]">
+      <div className="modal-box /* nicht höher als 90% der Bildschirmhöhe */ /* Inhalt scrollt, wenn zu hoch */ max-h-[90vh] max-w-6xl overflow-y-auto border border-cyan-400/40 bg-slate-950/95 p-0 shadow-[0_0_60px_rgba(56,189,248,0.6)]">
         <div className="grid md:grid-cols-[1.7fr_0.9fr]">
           {/* LEFT: Entry Content */}
           <div className="relative bg-slate-950/95 px-6 pt-7 pb-6 md:px-8 md:pb-8">
@@ -55,7 +55,7 @@ function EntryDetail({ entry, onClose }) {
             <img
               src={cyberAgent}
               alt="Cyber operative"
-              className="pointer-events-none relative z-10 -ml-[10%] h-full w-[120%] max-w-none object-cover opacity-85 mix-blend-screen"
+              className="pointer-events-none relative z-10 -ml-[10%] w-[120%] max-w-none object-cover opacity-85 mix-blend-screen"
             />
 
             {/* Text-Layer unten rechts */}
@@ -74,4 +74,4 @@ function EntryDetail({ entry, onClose }) {
   );
 }
 
-export default EntryDetail;
+export default LogDetails;

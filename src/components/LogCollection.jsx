@@ -1,7 +1,7 @@
-import EmptyState from "./EmptyState";
-import EntryCard from "./EntryCard";
+import LogCard from "./LogCard";
+import PageEmptyState from "./PageEmptyState";
 
-function EntryGrid({ entries, onEntryClick }) {
+function LogCollection({ entries, onEntryClick }) {
   const sortedEntries = entries
     .slice()
     .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -9,7 +9,7 @@ function EntryGrid({ entries, onEntryClick }) {
   if (sortedEntries.length === 0) {
     return (
       <div className="flex min-h-[60vh] flex-1 items-center justify-center">
-        <EmptyState />
+        <PageEmptyState />
       </div>
     );
   }
@@ -17,7 +17,7 @@ function EntryGrid({ entries, onEntryClick }) {
   return (
     <div className="grid flex-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {sortedEntries.map((entry) => (
-        <EntryCard
+        <LogCard
           key={entry.id}
           entry={entry}
           onClick={() => onEntryClick(entry)}
@@ -27,4 +27,4 @@ function EntryGrid({ entries, onEntryClick }) {
   );
 }
 
-export default EntryGrid;
+export default LogCollection;
