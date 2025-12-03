@@ -1,4 +1,4 @@
-import cyberAgent from "../assets/cyber-agent-03.webp";
+import cyberAgent from "../assets/cyber-agent-desk-01.webp";
 
 function DeleteAllConfirmModal({ onCancel, onCommit }) {
   return (
@@ -40,17 +40,18 @@ function DeleteAllConfirmModal({ onCancel, onCommit }) {
 
             {/* „Sprechblase“ – mittig zentriert */}
             <div className="mt-10 flex justify-center">
-              <p className="max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-6 py-4 text-center text-sm leading-relaxed text-slate-100 shadow-[0_0_35px_rgba(56,189,248,0.7)]">
-                Is this..... farewell?
+              <p className="font-rajdhani max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-10 py-1 text-center text-sm leading-relaxed text-slate-100 shadow-[0_0_35px_rgba(56,189,248,0.7)]">
+                No backups. No shadows.
+                <br></br>Just silence in the system...
               </p>
             </div>
 
             {/* Buttons – unten, zentriert */}
-            <div className="mt-auto flex justify-end gap-5 pt-8">
+            <div className="mt-auto flex justify-center gap-5 pt-8">
               <button
                 type="button"
                 onClick={onCancel}
-                className="btn border border-slate-600/80 bg-slate-900/80 px-10 text-slate-200 hover:border-cyan-400/50 hover:text-cyan-200"
+                className="btn border border-slate-600/80 bg-slate-900/80 px-12 text-slate-200 hover:border-cyan-400/50 hover:text-cyan-200"
               >
                 Cancel
               </button>
