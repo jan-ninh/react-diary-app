@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import AddNewLog from "./components/AddNewLog";
 import Buttons from "./components/Buttons";
-import DeleteAllConfirmModal from "./components/DeleteAllConfirmModal";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import LogCollection from "./components/LogCollection";
-import LogDetails from "./components/LogDetails";
+import ModalDeleteAll from "./components/ModalDeleteAll";
+import ModalLogDetails from "./components/ModalLogDetails";
+import ModalNewLog from "./components/ModalNewLog";
 import clearLocalStorage from "./functions/clearLocalStorage";
 import createHandleDeleteLog from "./functions/createHandleDeleteLog";
 import createHandleSaveNewLog from "./functions/createHandleSaveNewLog";
@@ -63,7 +63,7 @@ function App() {
 
           {/* 2) Create Logs */}
           {isNewLogOpen && (
-            <AddNewLog
+            <ModalNewLog
               onClose={handleCloseNewLog}
               onSave={handleSaveNewLog}
               entries={allLogs}
@@ -72,12 +72,15 @@ function App() {
 
           {/* 3) Select Log */}
           {logSelected && (
-            <LogDetails entry={logSelected} onClose={handleCloseLogSelected} />
+            <ModalLogDetails
+              entry={logSelected}
+              onClose={handleCloseLogSelected}
+            />
           )}
 
           {/* 4) Delete All */}
           {isDeleteAllOpen && (
-            <DeleteAllConfirmModal
+            <ModalDeleteAll
               onCancel={handleCancelDeleteAll}
               onCommit={handleCommitDeleteAll}
             />
