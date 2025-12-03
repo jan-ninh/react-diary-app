@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Buttons from "./components/Buttons";
 import Footer from "./components/Footer";
@@ -16,6 +16,21 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 //=====> APP
 //=====================================================================
 function App() {
+  // PRELOAD ALL ASSET IMAGES
+  useEffect(() => {
+    const imageModules = import.meta.glob("./assets/*.webp", {
+      eager: true,
+      as: "url",
+    });
+
+    const imageUrls = Object.values(imageModules);
+
+    imageUrls.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   // 1) All Logs
   const [allLogs, setAllLogs] = useLocalStorage(); // <-- Custom Hook for Load/Save
 
