@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import cyberAgent from "../assets/cyber-agent-01.png";
+import cyberAgent from "../assets/cyber-agent-01.webp";
 import { getRandomHeroImage } from "../functions/getRandomHeroImage";
 import getRandomImageUrl from "../functions/getRandomImageUrl";
 import getRandomSentence from "../functions/getRandomSentence";
