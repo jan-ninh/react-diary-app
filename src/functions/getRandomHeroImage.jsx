@@ -1,10 +1,10 @@
-import cyberAgentAction from "../assets/cyber-agent-action.png";
-import cyberAgentHealing from "../assets/cyber-agent-healing.png";
-import cyberAgentSad from "../assets/cyber-agent-sad.png";
-import cyberAgentSitting from "../assets/cyber-agent-sitting.png";
-import cyberAgentStandard from "../assets/cyber-agent-standard.png";
-import cyberAgentThinking from "../assets/cyber-agent-thinking.png";
-import cyberAgentWeapon from "../assets/cyber-agent-weapon.png";
+import cyberAgentAction from "../assets/cyber-agent-action.webp";
+import cyberAgentHealing from "../assets/cyber-agent-healing.webp";
+import cyberAgentSad from "../assets/cyber-agent-sad.webp";
+import cyberAgentSitting from "../assets/cyber-agent-sitting.webp";
+import cyberAgentStandard from "../assets/cyber-agent-standard.webp";
+import cyberAgentThinking from "../assets/cyber-agent-thinking.webp";
+import cyberAgentWeapon from "../assets/cyber-agent-weapon.webp";
 
 export const HERO_IMAGES = [
   { id: 1, src: cyberAgentStandard },

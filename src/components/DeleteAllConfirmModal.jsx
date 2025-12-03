@@ -1,4 +1,4 @@
-import cyberAgent from "../assets/cyber-agent-03.png";
+import cyberAgent from "../assets/cyber-agent-03.webp";
 
 function DeleteAllConfirmModal({ onCancel, onCommit }) {
   return (

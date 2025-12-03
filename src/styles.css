@@ -32,7 +32,7 @@
   pointer-events: none;
   z-index: 0;
 
-  animation: aurora-move 60s ease-in-out infinite alternate;
+  /* animation: aurora-move 60s ease-in-out infinite alternate; */
 }
 .aurora-bg::after {
   animation-duration: 55s;
