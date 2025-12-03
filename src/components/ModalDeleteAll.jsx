@@ -1,6 +1,6 @@
 import cyberAgent from "../assets/cyber-agent-desk-01.webp";
 
-function DeleteAllConfirmModal({ onCancel, onCommit }) {
+function ModalDeleteAll({ onCancel, onCommit }) {
   return (
     <dialog className="modal modal-open items-center">
       {/* kleineres Modal */}
@@ -40,9 +40,9 @@ function DeleteAllConfirmModal({ onCancel, onCommit }) {
 
             {/* „Sprechblase“ – mittig zentriert */}
             <div className="mt-10 flex justify-center">
-              <p className="font-rajdhani max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-10 py-1 text-center text-sm leading-relaxed text-slate-100 shadow-[0_0_35px_rgba(56,189,248,0.7)]">
-                No backups. No shadows.
-                <br></br>Just silence in the system...
+              <p className="font-rajdhani max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-10 py-2 text-center text-sm leading-relaxed text-slate-100 shadow-[0_0_35px_rgba(56,189,248,0.7)]">
+                Can't leave any traces...
+                {/* <br></br>Just silence in the system. */}
               </p>
             </div>
 
@@ -70,4 +70,4 @@ function DeleteAllConfirmModal({ onCancel, onCommit }) {
   );
 }
 
-export default DeleteAllConfirmModal;
+export default ModalDeleteAll;
