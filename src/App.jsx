@@ -45,6 +45,8 @@ function App() {
   };
 
   // 4) Delete Logs
+  const WIPE_DURATION = 2150;
+  const RESTORE_DURATION = 650;
   const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
   const [isSystemWiping, setIsSystemWiping] = useState(false);
   const [isSystemRestoring, setIsSystemRestoring] = useState(false);
@@ -63,7 +65,6 @@ function App() {
   const handleCancelDeleteAll = () => setIsDeleteAllOpen(false);
 
   const handleCommitDeleteAll = () => {
-    // Modal schließen
     setIsDeleteAllOpen(false);
 
     if (allLogs.length === 0) return;
@@ -74,24 +75,26 @@ function App() {
     // 1) Cyber-Wipe starten
     setIsSystemWiping(true);
 
-    // 2) Während der Screen "tot" ist: Daten wirklich löschen
+    // 2) Während Screen "tot" ist: Daten wirklich löschen
     window.setTimeout(() => {
       clearLocalStorage(setAllLogs);
       setLogSelected(null);
       setIsLogDetailsOpen(false);
-    }, 260); // Moment, wo der Flash schon voll da ist
+    }, 260);
 
     // 3) Wipe endet → Restore-Phase starten
     window.setTimeout(() => {
-      setIsSystemWiping(false); // Overlay + Flicker-Phase vorbei
-      setIsSystemRestoring(true); // smooth Re-Light starten
-    }, 2150); // muss zur Dauer der Overlay-Animation passen
+      setIsSystemWiping(false);
+      setIsSystemRestoring(true);
+    }, WIPE_DURATION);
 
-    // 4) Restore-Phase wieder beenden
+    // 4) Restore-Phase nach RESTORE_DURATION wieder beenden
     window.setTimeout(() => {
       setIsSystemRestoring(false);
-    }, 1150 + 650); // 650ms = Dauer der Restore-Animation
+    }, WIPE_DURATION + RESTORE_DURATION);
   };
+
+  const shouldShowButtons = !isSystemWiping && !isSystemRestoring;
 
   //=====================================================================
   //=====> RETURN
@@ -106,7 +109,7 @@ function App() {
               isSystemWiping={isSystemWiping}
               isSystemRestoring={isSystemRestoring}
             />
-            {isSystemRestoring && (
+            {shouldShowButtons && (
               <Buttons
                 onOpenModal={handleOpenNewLog}
                 onDeleteAll={handleDeleteAll}

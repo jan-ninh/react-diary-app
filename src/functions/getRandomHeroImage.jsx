@@ -30,7 +30,7 @@ export const HERO_IMAGES = [
   { id: 12, src: cyberAgentWaiting },
   { id: 13, src: cyberAgent10 },
   { id: 14, src: cyberAgent11 },
-  { id: 15, src: cyberAgent12 },
+  { id: 15, src: cyberAgent12 },git
   { id: 16, src: cyberAgent13 },
 ];
 
