@@ -3,27 +3,38 @@ import cyberAgent from "../assets/cyber-agent-desk-01.webp";
 function ModalDeleteAll({ onCancel, onCommit }) {
   return (
     <dialog className="modal modal-open items-center">
-      {/* kleineres Modal */}
-      <div className="modal-box max-h-[80vh] w-[80vw] max-w-3xl overflow-y-auto border border-cyan-400/40 bg-slate-950/95 p-0 shadow-[0_0_40px_rgba(56,189,248,0.6)]">
+      {/* Modal */}
+      <div className="modal-box max-h-[80vh] w-full max-w-3xl overflow-y-auto border border-cyan-400/40 bg-slate-950/95 p-0 shadow-[0_0_40px_rgba(56,189,248,0.6)]">
         <div className="grid md:grid-cols-[0.8fr_1.5fr]">
-          {/* LEFT: Protagonistin */}
-          <div className="relative hidden overflow-hidden bg-gradient-to-tr from-yellow-300/85 via-amber-300/75 to-fuchsia-500/80 md:block">
-            <div className="absolute inset-0 bg-slate-950/90 mix-blend-multiply" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(56,189,248,0.85),transparent_40%),radial-gradient(circle_at_100%_100%,rgba(236,72,153,0.95),transparent_55%)] opacity-80" />
+          {/* LEFT: Protagonistin mit Platzhalter */}
+          <div className="relative hidden items-center justify-center bg-slate-950/90 md:flex">
+            {/* Platzhalter mit fester Höhe */}
+            <div className="relative h-[420px] w-full max-w-xs overflow-hidden rounded-sm bg-gradient-to-tr from-yellow-300/85 via-amber-300/75 to-fuchsia-500/80">
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-slate-950/70 mix-blend-multiply" />
 
-            <img
-              src={cyberAgent}
-              alt="Cyber operative"
-              className="pointer-events-none relative z-10 -ml-[10%] w-[120%] max-w-none object-cover opacity-85 mix-blend-screen"
-            />
+              {/* Optional: „Skeleton“ während Ladezeit */}
+              <div
+                className="absolute inset-0 bg-slate-900/40"
+                aria-hidden="true"
+              />
 
-            <div className="absolute right-4 bottom-4 left-4 z-20 text-left">
-              <p className="font-rajdhani text-[0.6rem] tracking-[0.35em] text-slate-900/80 uppercase">
-                CYBERNODE 2077
-              </p>
-              <p className="font-rajdhani text-xs text-slate-900 uppercase">
-                System Override
-              </p>
+              {/* Image  */}
+              <img
+                src={cyberAgent}
+                alt="Cyber operative"
+                className="relative z-10 h-full w-full object-cover object-center opacity-100 mix-blend-screen"
+              />
+
+              {/* Text unten im Bild */}
+              <div className="absolute right-4 bottom-4 left-4 z-20 text-left">
+                <p className="font-rajdhani text-[0.6rem] tracking-[0.35em] text-slate-500/80 uppercase">
+                  CYBERNODE 2077
+                </p>
+                <p className="font-rajdhani text-xs text-slate-500 uppercase">
+                  System Override
+                </p>
+              </div>
             </div>
           </div>
 
@@ -39,9 +50,9 @@ function ModalDeleteAll({ onCancel, onCommit }) {
             </header>
 
             {/* „Sprechblase“ – mittig zentriert */}
-            <div className="mt-10 flex justify-center">
+            <div className="mt-8 flex justify-center">
               <p className="font-rajdhani max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-10 py-2 text-center text-sm leading-relaxed text-slate-100 shadow-[0_0_35px_rgba(56,189,248,0.7)]">
-                Can't leave any traces...
+                After this, even ghosts won't find my footprints.
                 {/* <br></br>Just silence in the system. */}
               </p>
             </div>
