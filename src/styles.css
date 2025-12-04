@@ -156,7 +156,7 @@ dialog.cyber-modal::backdrop {
   animation: modal-pop-soft 180ms ease-out !important;
 }
 
-// DELETE ALL EFFECT
+/* DELETE ALL EFFECT */
 @keyframes cyber-wipe-sequence {
   0% {
     opacity: 0;
@@ -186,12 +186,169 @@ dialog.cyber-modal::backdrop {
   }
 }
 
-.cyber-wipe-overlay {
+/* .cyber-wipe-overlay {
   position: fixed;
   inset: 0;
-  z-index: 999; /* über allem, auch über den Modals */
+  z-index: 999;
   pointer-events: none;
   background: #000;
   transform-origin: center;
   animation: cyber-wipe-sequence 900ms ease-in-out forwards;
+} */
+
+/* DELETE ALL EFFECT – NEON GLITCH WIPE */
+
+@keyframes cyber-wipe-main {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+    filter: none;
+  }
+  5% {
+    opacity: 1;
+    filter: brightness(2) contrast(1.6) saturate(1.4);
+  }
+  10% {
+    transform: translateX(-6px) skewX(-3deg);
+  }
+  16% {
+    transform: translateX(5px) skewX(2deg);
+  }
+  22% {
+    transform: translateX(0) skewX(0deg);
+  }
+  40% {
+    filter: brightness(1.3) contrast(1.4);
+  }
+  60% {
+    transform: scaleY(0.09);
+    filter: brightness(0.9) blur(1px);
+  }
+  75% {
+    transform: scaleY(0.03);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+    filter: brightness(0.6) blur(2px);
+  }
+}
+
+@keyframes cyber-wipe-glitch {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+    background-position: 0 0;
+  }
+  8% {
+    opacity: 0.9;
+    transform: translateX(-14px);
+  }
+  16% {
+    transform: translateX(10px);
+  }
+  24% {
+    transform: translateX(0);
+  }
+  40% {
+    opacity: 0.85;
+    background-position: 0 0;
+  }
+  55% {
+    background-position: 0 14px;
+  }
+  70% {
+    background-position: 0 -10px;
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    background-position: 0 0;
+  }
+}
+
+.cyber-wipe-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  transform-origin: center;
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.38) 0, transparent 58%),
+    radial-gradient(
+      circle at bottom,
+      rgba(244, 63, 94, 0.45) 0,
+      transparent 60%
+    ),
+    #020617;
+  animation: cyber-wipe-main 1150ms ease-in-out forwards;
+}
+
+.cyber-wipe-overlay::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0) 0,
+    rgba(15, 23, 42, 0) 2px,
+    rgba(148, 163, 184, 0.85) 3px
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: cyber-wipe-glitch 1150ms ease-out forwards;
+}
+
+/* HEADER & FOOTER FLICKER DURING SYSTEM WIPE */
+
+.header-wipe .letter-flicker,
+.footer-wipe .letter-flicker {
+  display: inline-block;
+  animation: header-letter-flicker 1150ms ease-in-out forwards;
+}
+
+/* Versetzte Delays → nicht alle Zeichen flackern gleichzeitig */
+.header-wipe .letter-flicker:nth-child(3n),
+.footer-wipe .letter-flicker:nth-child(3n) {
+  animation-delay: 40ms;
+}
+.header-wipe .letter-flicker:nth-child(3n + 1),
+.footer-wipe .letter-flicker:nth-child(3n + 1) {
+  animation-delay: 120ms;
+}
+.header-wipe .letter-flicker:nth-child(4n + 2),
+.footer-wipe .letter-flicker:nth-child(4n + 2) {
+  animation-delay: 220ms;
+}
+
+@keyframes header-letter-flicker {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+  }
+  10% {
+    opacity: 0.35;
+    transform: translateY(-1px);
+  }
+  18% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  32% {
+    opacity: 0.2;
+    transform: translateY(1px);
+  }
+  45% {
+    opacity: 0.9;
+  }
+  65% {
+    opacity: 0.15;
+    text-shadow: 0 0 4px rgba(56, 189, 248, 0.3);
+  }
+  100% {
+    opacity: 0.05;
+    text-shadow: none;
+  }
 }
