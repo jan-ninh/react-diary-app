@@ -115,7 +115,7 @@ html {
 }
 
 .animate-cyber-pulse {
-  animation: cyberPulse 3.2s ease-in-out infinite;
+  animation: cyberPulse 1.6s ease-in-out infinite;
 }
 
 .material-symbols-outlined.thin {
@@ -299,16 +299,18 @@ dialog.cyber-modal::backdrop {
   opacity: 0;
   animation: cyber-wipe-glitch 1150ms ease-out forwards;
 }
-
-/* HEADER & FOOTER FLICKER DURING SYSTEM WIPE */
-
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+/* HEADER & FOOTER – FLICKER BEIM WIPE */
+/* -------------------------------------------- */
+/* -------------------------------------------- */
 .header-wipe .letter-flicker,
 .footer-wipe .letter-flicker {
   display: inline-block;
-  animation: header-letter-flicker 1150ms ease-in-out forwards;
+  animation: header-letter-flicker 2150ms ease-in-out forwards;
 }
 
-/* Versetzte Delays → nicht alle Zeichen flackern gleichzeitig */
+/* Versetzte Delays → unregelmäßiges Flackern (nur in der WIPE-Phase) */
 .header-wipe .letter-flicker:nth-child(3n),
 .footer-wipe .letter-flicker:nth-child(3n) {
   animation-delay: 40ms;
@@ -352,3 +354,28 @@ dialog.cyber-modal::backdrop {
     text-shadow: none;
   }
 }
+
+/* RESTORE-PHASE – smooth Neon-Reboot */
+
+/* .header-restore .letter-flicker,
+.footer-restore .letter-flicker {
+  display: inline-block;
+  animation: header-letter-restore 650ms ease-out forwards;
+}
+
+@keyframes header-letter-restore {
+  0% {
+    opacity: 0.05;
+    text-shadow: none;
+    transform: translateY(1px);
+  }
+  40% {
+    opacity: 0.6;
+    text-shadow: 0 0 6px rgba(56, 189, 248, 0.5);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+    transform: translateY(0);
+  }
+} */

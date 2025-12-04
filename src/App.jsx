@@ -47,6 +47,7 @@ function App() {
   // 4) Delete Logs
   const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
   const [isSystemWiping, setIsSystemWiping] = useState(false);
+  const [isSystemRestoring, setIsSystemRestoring] = useState(false);
 
   const handleDeleteLog = createHandleDeleteLog(
     setAllLogs,
@@ -67,6 +68,9 @@ function App() {
 
     if (allLogs.length === 0) return;
 
+    // sicherstellen, dass Restore aus ist
+    setIsSystemRestoring(false);
+
     // 1) Cyber-Wipe starten
     setIsSystemWiping(true);
 
@@ -77,10 +81,16 @@ function App() {
       setIsLogDetailsOpen(false);
     }, 260); // Moment, wo der Flash schon voll da ist
 
-    // 3) Nach Ende der Animation: Overlay entfernen
+    // 3) Wipe endet → Restore-Phase starten
     window.setTimeout(() => {
-      setIsSystemWiping(false);
-    }, 1150); // muss mit CSS-Dauer matchen
+      setIsSystemWiping(false); // Overlay + Flicker-Phase vorbei
+      setIsSystemRestoring(true); // smooth Re-Light starten
+    }, 2150); // muss zur Dauer der Overlay-Animation passen
+
+    // 4) Restore-Phase wieder beenden
+    window.setTimeout(() => {
+      setIsSystemRestoring(false);
+    }, 1150 + 650); // 650ms = Dauer der Restore-Animation
   };
 
   //=====================================================================
@@ -92,13 +102,17 @@ function App() {
         <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-6 py-6">
           {/* HEADER + BUTTONS */}
           <div className="flex items-center justify-between gap-6">
-            <Header isSystemWiping={isSystemWiping} />
-
-            <Buttons
-              onOpenModal={handleOpenNewLog}
-              onDeleteAll={handleDeleteAll}
-              isDeleteDisabled={isDeleteDisabled}
+            <Header
+              isSystemWiping={isSystemWiping}
+              isSystemRestoring={isSystemRestoring}
             />
+            {isSystemRestoring && (
+              <Buttons
+                onOpenModal={handleOpenNewLog}
+                onDeleteAll={handleDeleteAll}
+                isDeleteDisabled={isDeleteDisabled}
+              />
+            )}
           </div>
 
           {/* <Test /> */}
@@ -136,7 +150,10 @@ function App() {
             />
           </main>
 
-          <Footer />
+          <Footer
+            isSystemWiping={isSystemWiping}
+            isSystemRestoring={isSystemRestoring}
+          />
         </div>
 
         {/* SYSTEM WIPE OVERLAY */}
