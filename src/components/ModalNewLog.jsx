@@ -76,11 +76,11 @@ function ModalNewLog({ onClose, onSave, entries }) {
 
           {/* RIGHT: Formular */}
           <div className="relative bg-slate-950/95 p-6 md:p-8">
-            <header className="mb-4 flex items-center justify-between">
-              <h2 className="font-rajdhani text-2xl font-semibold tracking-[0.25em] text-cyan-200 uppercase italic">
-                New Entry
+            <header className="mb-6 flex items-center justify-between">
+              <h2 className="font-rajdhani flex justify-center text-3xl font-semibold tracking-[0.15em] text-cyan-100 uppercase">
+                NEW ENTRY
               </h2>
-              <span className="rounded-full border border-cyan-400/40 bg-slate-900/80 px-3 py-1 text-[0.65rem] tracking-[0.2em] text-slate-400 uppercase">
+              <span className="rounded-full border border-cyan-400/40 bg-slate-900/80 px-3 py-0.5 text-[0.65rem] tracking-[0.2em] text-slate-400 uppercase">
                 Data Log Input
               </span>
             </header>

@@ -53,7 +53,7 @@ function ModalDeleteAll({ isOpen, onCancel, onCommit }) {
             {/* „Sprechblase“ – mittig zentriert */}
             <div className="mt-8 flex justify-center">
               <p className="font-rajdhani max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-10 py-2 text-center text-sm leading-relaxed text-slate-100 italic shadow-[0_0_35px_rgba(56,189,248,0.7)]">
-                No backups. Need to be sure...
+                No backup. Need to be sure...
               </p>
             </div>
 

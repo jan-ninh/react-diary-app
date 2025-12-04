@@ -8,7 +8,7 @@ const PageEmptyState = () => {
   const [displayMessage, setDisplayMessage] = useState(DISPLAY_MESSAGE_01);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setIsVisible(true), 300);
+    const fadeTimer = setTimeout(() => setIsVisible(true), 1800);
     const textTimer = setTimeout(() => {
       setDisplayMessage(DISPLAY_MESSAGE_02);
     }, 8200);
@@ -26,7 +26,7 @@ const PageEmptyState = () => {
       }`}
     >
       <span
-        className="material-symbols-outlined thin mb-2 animate-ping animate-spin text-gray-300 [animation-duration:10s]"
+        className="material-symbols-outlined thin mb-3 animate-ping animate-spin text-gray-300 [animation-duration:10s]"
         style={{
           fontSize: "90px",
           fontVariationSettings: '"FILL" 0, "wght" 100, "GRAD" 0, "opsz" 24',
