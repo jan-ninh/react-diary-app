@@ -120,3 +120,12 @@
     "GRAD" 0,
     "opsz" 24 !important;
 }
+
+dialog.cyber-modal::backdrop {
+  background: rgba(
+    18,
+    115,
+    232,
+    0.35
+  ); /* schwarzes halbtransparentes Overlay */
+}

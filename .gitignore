@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ignoriert alle Test.jsx (egal in welchem Ordner)
+**/Test.jsx

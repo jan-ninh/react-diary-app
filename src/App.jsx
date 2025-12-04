@@ -7,29 +7,19 @@ import LogCollection from "./components/LogCollection";
 import ModalDeleteAll from "./components/ModalDeleteAll";
 import ModalLogDetails from "./components/ModalLogDetails";
 import ModalNewLog from "./components/ModalNewLog";
+import Test from "./components/Test";
 import clearLocalStorage from "./functions/clearLocalStorage";
 import createHandleDeleteLog from "./functions/createHandleDeleteLog";
 import createHandleSaveNewLog from "./functions/createHandleSaveNewLog";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import usePreloadAllImages from "./hooks/usePreloadAllImages";
 
 //=====================================================================
 //=====> APP
 //=====================================================================
 function App() {
-  // PRELOAD ALL ASSET IMAGES
-  useEffect(() => {
-    const imageModules = import.meta.glob("./assets/*.webp", {
-      eager: true,
-      as: "url",
-    });
-
-    const imageUrls = Object.values(imageModules);
-
-    imageUrls.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
+  // 0) PRELOAD Imgages
+  usePreloadAllImages();
 
   // 1) All Logs
   const [allLogs, setAllLogs] = useLocalStorage(); // <-- Custom Hook for Load/Save
@@ -67,7 +57,7 @@ function App() {
             onDeleteAll={handleDeleteAll}
           />
         </div>
-
+        {/* <Test /> */}
         <main className="flex-1 px-4 py-6">
           {/* 1) All Logs */}
           <LogCollection
