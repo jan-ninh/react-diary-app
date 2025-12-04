@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Buttons from "./components/Buttons";
 import Footer from "./components/Footer";
@@ -7,7 +7,7 @@ import LogCollection from "./components/LogCollection";
 import ModalDeleteAll from "./components/ModalDeleteAll";
 import ModalLogDetails from "./components/ModalLogDetails";
 import ModalNewLog from "./components/ModalNewLog";
-import Test from "./components/Test";
+// import Test from "./components/Test";
 import clearLocalStorage from "./functions/clearLocalStorage";
 import createHandleDeleteLog from "./functions/createHandleDeleteLog";
 import createHandleSaveNewLog from "./functions/createHandleSaveNewLog";
