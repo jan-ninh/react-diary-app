@@ -1,9 +1,10 @@
-import cyberAgent from "../assets/cyber-agent-desk-01.webp";
+import cyberAgent from "../assets/cyber-agent-desk.webp";
 
-function ModalDeleteAll({ onCancel, onCommit }) {
+function ModalDeleteAll({ isOpen, onCancel, onCommit }) {
   return (
-    <dialog className="modal modal-open items-center">
-      {/* Modal */}
+    <dialog
+      className={`cyber-modal modal items-center ${isOpen ? "modal-open" : ""}`}
+    >
       <div className="modal-box max-h-[80vh] w-full max-w-3xl overflow-y-auto border border-cyan-400/40 bg-slate-950/95 p-0 shadow-[0_0_40px_rgba(56,189,248,0.6)]">
         <div className="grid md:grid-cols-[0.8fr_1.5fr]">
           {/* LEFT: Protagonistin mit Platzhalter */}
@@ -28,10 +29,10 @@ function ModalDeleteAll({ onCancel, onCommit }) {
 
               {/* Text unten im Bild */}
               <div className="absolute right-4 bottom-4 left-4 z-20 text-left">
-                <p className="font-rajdhani text-[0.6rem] tracking-[0.35em] text-slate-500/80 uppercase">
+                <p className="font-rajdhani text-[0.6rem] tracking-[0.35em] text-slate-400/70 uppercase">
                   CYBERNODE 2077
                 </p>
-                <p className="font-rajdhani text-xs text-slate-500 uppercase">
+                <p className="font-rajdhani text-xs text-slate-400/80 uppercase">
                   System Override
                 </p>
               </div>
@@ -51,9 +52,8 @@ function ModalDeleteAll({ onCancel, onCommit }) {
 
             {/* „Sprechblase“ – mittig zentriert */}
             <div className="mt-8 flex justify-center">
-              <p className="font-rajdhani max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-10 py-2 text-center text-sm leading-relaxed text-slate-100 shadow-[0_0_35px_rgba(56,189,248,0.7)]">
-                After this, even ghosts won't find my footprints.
-                {/* <br></br>Just silence in the system. */}
+              <p className="font-rajdhani max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-10 py-2 text-center text-sm leading-relaxed text-slate-100 italic shadow-[0_0_35px_rgba(56,189,248,0.7)]">
+                No backups. Need to be sure...
               </p>
             </div>
 

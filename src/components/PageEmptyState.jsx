@@ -8,7 +8,7 @@ const PageEmptyState = () => {
   const [displayMessage, setDisplayMessage] = useState(DISPLAY_MESSAGE_01);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setIsVisible(true), 600);
+    const fadeTimer = setTimeout(() => setIsVisible(true), 300);
     const textTimer = setTimeout(() => {
       setDisplayMessage(DISPLAY_MESSAGE_02);
     }, 8200);

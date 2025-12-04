@@ -18,11 +18,12 @@ import usePreloadAllImages from "./hooks/usePreloadAllImages";
 //=====> APP
 //=====================================================================
 function App() {
-  // 0) PRELOAD Imgages
+  // 0) PRELOAD Images
   usePreloadAllImages();
 
   // 1) All Logs
   const [allLogs, setAllLogs] = useLocalStorage(); // <-- Custom Hook for Load/Save
+  const isDeleteDisabled = allLogs.length === 0;
 
   // 2) Create Logs
   const [isNewLogOpen, setIsNewLogOpen] = useState(false);
@@ -30,14 +31,28 @@ function App() {
   const handleCloseNewLog = () => setIsNewLogOpen(false);
   const handleSaveNewLog = createHandleSaveNewLog(allLogs, setAllLogs);
 
-  // 3) Select Log
+  // 3) Select Log + Details Modal
   const [logSelected, setLogSelected] = useState(null);
-  const handleCloseLogSelected = () => setLogSelected(null);
+  const [isLogDetailsOpen, setIsLogDetailsOpen] = useState(false);
+  const handleOpenLogDetails = (entry) => {
+    setLogSelected(entry);
+    setIsLogDetailsOpen(true);
+  };
+  const handleCloseLogDetails = () => {
+    setIsLogDetailsOpen(false);
+  };
 
   // 4) Delete Logs
   const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
-  const handleDeleteLog = createHandleDeleteLog(setAllLogs, setLogSelected);
-  const handleDeleteAll = () => setIsDeleteAllOpen(true);
+  const handleDeleteLog = createHandleDeleteLog(
+    setAllLogs,
+    setLogSelected,
+    setIsLogDetailsOpen,
+  );
+  const handleDeleteAll = () => {
+    if (allLogs.length === 0) return;
+    setIsDeleteAllOpen(true);
+  };
   const handleCancelDeleteAll = () => setIsDeleteAllOpen(false);
   const handleCommitDeleteAll = () => {
     clearLocalStorage(setAllLogs);
@@ -55,6 +70,7 @@ function App() {
           <Buttons
             onOpenModal={handleOpenNewLog}
             onDeleteAll={handleDeleteAll}
+            isDeleteDisabled={isDeleteDisabled}
           />
         </div>
         {/* <Test /> */}
@@ -62,7 +78,7 @@ function App() {
           {/* 1) All Logs */}
           <LogCollection
             entries={allLogs}
-            onEntryClick={setLogSelected}
+            onEntryClick={handleOpenLogDetails}
             onDeleteEntry={handleDeleteLog}
           />
 
@@ -76,20 +92,18 @@ function App() {
           )}
 
           {/* 3) Select Log */}
-          {logSelected && (
-            <ModalLogDetails
-              entry={logSelected}
-              onClose={handleCloseLogSelected}
-            />
-          )}
+          <ModalLogDetails
+            isOpen={isLogDetailsOpen}
+            entry={logSelected}
+            onClose={handleCloseLogDetails}
+          />
 
           {/* 4) Delete All */}
-          {isDeleteAllOpen && (
-            <ModalDeleteAll
-              onCancel={handleCancelDeleteAll}
-              onCommit={handleCommitDeleteAll}
-            />
-          )}
+          <ModalDeleteAll
+            isOpen={isDeleteAllOpen}
+            onCancel={handleCancelDeleteAll}
+            onCommit={handleCommitDeleteAll}
+          />
         </main>
         <Footer />
       </div>
