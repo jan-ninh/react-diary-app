@@ -1,20 +1,36 @@
 import React from "react";
 
-const Buttons = ({ onDeleteAll, onOpenModal }) => {
+const Buttons = ({ onDeleteAll, onOpenModal, isDeleteDisabled }) => {
+  // Basis-Klassen für beide Buttons (gleiche Größe/Layout)
+  const baseButtonClasses =
+    "btn btn-primary font-audiowide relative px-6 font-bold uppercase " +
+    "border border-transparent " + // Fixe Border-Breite, auch im Disabled-State
+    "shadow-[0_0_20px_rgba(236,72,153,0.55)] " +
+    "bg-pink-500/90 " +
+    "transition duration-300 " +
+    "hover:-translate-y-0.5 hover:border-cyan-400/80 hover:bg-pink-400 " +
+    "hover:text-cyan-50 hover:shadow-[0_0_35px_rgba(34,211,238,0.85),0_0_60px_rgba(236,72,153,0.75)]";
+
+  const deleteButtonExtra =
+    " disabled:translate-y-0 " + // kein Hover-Lift wenn disabled
+    " disabled:cursor-not-allowed " +
+    " disabled:bg-slate-800 " +
+    " disabled:text-slate-400 " +
+    " disabled:border-slate-600 " + // Border bleibt vorhanden → keine Layoutverschiebung
+    " disabled:shadow-[0_0_12px_rgba(15,23,42,0.9)]"; // dezenter, aber vorhandener Shadow
+
   return (
     <div className="flex gap-3">
       {/* Button: New Log */}
-      <button
-        className="btn btn-primary font-audiowide relative bg-pink-500/90 px-6 font-bold uppercase shadow-[0_0_20px_rgba(236,72,153,0.55)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-400/80 hover:bg-pink-400 hover:text-cyan-50 hover:shadow-[0_0_35px_rgba(34,211,238,0.85),0_0_60px_rgba(236,72,153,0.75)]"
-        onClick={onOpenModal}
-      >
+      <button className={baseButtonClasses} onClick={onOpenModal}>
         +New Log
       </button>
 
       {/* Button: Delete All */}
       <button
-        className="btn btn-primary font-audiowide relative bg-pink-500/90 px-6 font-bold uppercase shadow-[0_0_20px_rgba(236,72,153,0.55)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-400/80 hover:bg-pink-400 hover:text-cyan-50 hover:shadow-[0_0_35px_rgba(34,211,238,0.85),0_0_60px_rgba(236,72,153,0.75)]"
+        className={baseButtonClasses + deleteButtonExtra}
         onClick={onDeleteAll}
+        disabled={isDeleteDisabled}
       >
         Delete All
       </button>

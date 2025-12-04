@@ -1,5 +1,3 @@
-import React from "react";
-
 const IMAGE_POOL = [
   "https://images.pexels.com/photos/5845255/pexels-photo-5845255.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
   "https://images.pexels.com/photos/1718758/pexels-photo-1718758.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
@@ -30,6 +28,8 @@ const IMAGE_POOL = [
   "https://images.pexels.com/photos/10175091/pexels-photo-10175091.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
   "https://images.pexels.com/photos/29778579/pexels-photo-29778579.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop",
 ];
+
+export const IMAGE_POOL_EXPORT = IMAGE_POOL;
 
 const getRandomImageUrl = () => {
   const index = Math.floor(Math.random() * IMAGE_POOL.length);
