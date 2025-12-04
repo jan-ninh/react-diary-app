@@ -15,7 +15,7 @@ function LogCollection({ entries, onEntryClick, onDeleteEntry }) {
   }
 
   return (
-    <div className="grid flex-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="mt-2 grid flex-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
       {sortedEntries.map((entry) => (
         <LogCard
           key={entry.id}

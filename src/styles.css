@@ -3,6 +3,11 @@
   themes: cyberpunk --default;
 }
 
+html {
+  overflow-y: scroll;
+  /* scrollbar-gutter: stable both-edges; */
+  /* background-color: #020617; */
+}
 .aurora-bg {
   position: relative;
   min-height: 100vh;
@@ -149,4 +154,44 @@ dialog.cyber-modal::backdrop {
 
 .cyber-modal .modal-box {
   animation: modal-pop-soft 180ms ease-out !important;
+}
+
+// DELETE ALL EFFECT
+@keyframes cyber-wipe-sequence {
+  0% {
+    opacity: 0;
+    transform: scaleY(1) translateX(0);
+  }
+  8% {
+    opacity: 1;
+    transform: scaleY(1) translateX(-3px); /* kurzer Shock nach links */
+  }
+  16% {
+    transform: scaleY(1) translateX(3px); /* dann nach rechts */
+  }
+  24% {
+    transform: scaleY(1) translateX(0); /* beruhigt sich */
+  }
+  40% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  70% {
+    opacity: 1;
+    transform: scaleY(0.04); /* Röhren-TV-Linie */
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+.cyber-wipe-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999; /* über allem, auch über den Modals */
+  pointer-events: none;
+  background: #000;
+  transform-origin: center;
+  animation: cyber-wipe-sequence 900ms ease-in-out forwards;
 }

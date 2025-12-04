@@ -58,54 +58,57 @@ function App() {
     clearLocalStorage(setAllLogs);
     setIsDeleteAllOpen(false);
   };
+  const [isSystemWiping, setIsSystemWiping] = useState(false);
 
   //=====================================================================
   //=====> RETURN
   //=====================================================================
   return (
     <div className="aurora-bg">
-      <div className="aurora-content flex min-h-screen flex-col bg-slate-950/70 p-6 text-slate-100 backdrop-blur-md">
-        <div className="flex justify-between">
-          <Header />
-          <Buttons
-            onOpenModal={handleOpenNewLog}
-            onDeleteAll={handleDeleteAll}
-            isDeleteDisabled={isDeleteDisabled}
-          />
-        </div>
-        {/* <Test /> */}
-        <main className="flex-1 px-4 py-6">
-          {/* 1) All Logs */}
-          <LogCollection
-            entries={allLogs}
-            onEntryClick={handleOpenLogDetails}
-            onDeleteEntry={handleDeleteLog}
-          />
-
-          {/* 2) Create Logs */}
-          {isNewLogOpen && (
-            <ModalNewLog
-              onClose={handleCloseNewLog}
-              onSave={handleSaveNewLog}
-              entries={allLogs}
+      <div className="aurora-content flex min-h-screen flex-col bg-slate-950/70 text-slate-100 backdrop-blur-md">
+        <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-6 py-6">
+          <div className="flex items-center justify-between gap-6">
+            <Header />
+            <Buttons
+              onOpenModal={handleOpenNewLog}
+              onDeleteAll={handleDeleteAll}
+              isDeleteDisabled={isDeleteDisabled}
             />
-          )}
+          </div>
+          {/* <Test /> */}
+          <main className="flex-1 px-4 py-6">
+            {/* 1) All Logs */}
+            <LogCollection
+              entries={allLogs}
+              onEntryClick={handleOpenLogDetails}
+              onDeleteEntry={handleDeleteLog}
+            />
 
-          {/* 3) Select Log */}
-          <ModalLogDetails
-            isOpen={isLogDetailsOpen}
-            entry={logSelected}
-            onClose={handleCloseLogDetails}
-          />
+            {/* 2) Create Logs */}
+            {isNewLogOpen && (
+              <ModalNewLog
+                onClose={handleCloseNewLog}
+                onSave={handleSaveNewLog}
+                entries={allLogs}
+              />
+            )}
 
-          {/* 4) Delete All */}
-          <ModalDeleteAll
-            isOpen={isDeleteAllOpen}
-            onCancel={handleCancelDeleteAll}
-            onCommit={handleCommitDeleteAll}
-          />
-        </main>
-        <Footer />
+            {/* 3) Select Log */}
+            <ModalLogDetails
+              isOpen={isLogDetailsOpen}
+              entry={logSelected}
+              onClose={handleCloseLogDetails}
+            />
+
+            {/* 4) Delete All */}
+            <ModalDeleteAll
+              isOpen={isDeleteAllOpen}
+              onCancel={handleCancelDeleteAll}
+              onCommit={handleCommitDeleteAll}
+            />
+          </main>
+          <Footer />
+        </div>
       </div>
     </div>
   );
