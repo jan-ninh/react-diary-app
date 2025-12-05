@@ -64,7 +64,7 @@ function ModalLogDetails({ isOpen, entry, onClose }) {
             <div className="absolute inset-0 bg-slate-950/90" />
 
             {/* Neon-Glow Overlay */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(56,189,248,0.85),transparent_40%),radial-gradient(circle_at_100%_100%,rgba(236,72,153,0.95),transparent_55%)] opacity-80" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(56,189,248,0.85),transparent_40%),radial-gradient(circle_at_100%_100%,rgba(236,72,153,0.95),transparent_55%)] opacity-80 select-none" />
 
             {/* HERO IMAGE füllt den kompletten rechten Bereich */}
             {heroImage && (
@@ -78,11 +78,11 @@ function ModalLogDetails({ isOpen, entry, onClose }) {
             )}
 
             {/* Text-Label unten rechts */}
-            <div className="absolute right-4 bottom-4 left-4 z-20 text-right">
+            <div className="pointer-events-none absolute right-4 bottom-4 left-4 z-20 text-right select-none">
               <p className="font-rajdhani text-[0.6rem] tracking-[0.35em] text-slate-900/80 uppercase">
                 CYBERNODE 2077
               </p>
-              <p className="font-rajdhani text-xs text-slate-900 uppercase">
+              <p className="font-rajdhani pointer-events-none text-xs text-slate-900 uppercase select-none">
                 Log Detail View
               </p>
             </div>

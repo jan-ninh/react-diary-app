@@ -24,15 +24,15 @@ function ModalDeleteAll({ isOpen, onCancel, onCommit }) {
               <img
                 src={cyberAgent}
                 alt="Cyber operative"
-                className="relative z-10 h-full w-full object-cover object-center opacity-100 mix-blend-screen"
+                className="pointer-events-none relative z-10 h-full w-full object-cover object-center opacity-100 mix-blend-screen select-none"
               />
 
               {/* Text unten im Bild */}
               <div className="absolute right-4 bottom-4 left-4 z-20 text-left">
-                <p className="font-rajdhani text-[0.6rem] tracking-[0.35em] text-slate-400/70 uppercase">
+                <p className="font-rajdhani pointer-events-none text-[0.6rem] tracking-[0.35em] text-slate-400/70 uppercase select-none">
                   CYBERNODE 2077
                 </p>
-                <p className="font-rajdhani text-xs text-slate-400/80 uppercase">
+                <p className="font-rajdhani pointer-events-none text-xs text-slate-400/80 uppercase select-none">
                   System Override
                 </p>
               </div>
@@ -42,17 +42,17 @@ function ModalDeleteAll({ isOpen, onCancel, onCommit }) {
           {/* RIGHT: Inhalt */}
           <div className="relative flex flex-col bg-slate-950/95 px-6 pt-7 pb-6 md:px-8 md:pb-8">
             <header className="mb-6">
-              <p className="font-rajdhani flex justify-center text-sm tracking-[0.25em] text-amber-300/80 uppercase">
+              <p className="font-rajdhani pointer-events-none flex justify-center text-sm tracking-[0.25em] text-amber-300/80 uppercase select-none">
                 WARNING
               </p>
-              <h2 className="font-rajdhani mt-1 flex justify-center text-3xl font-semibold tracking-[0.15em] text-cyan-100 uppercase">
+              <h2 className="font-rajdhani pointer-events-none mt-1 flex justify-center text-3xl font-semibold tracking-[0.15em] text-cyan-100 uppercase select-none">
                 Terminate All Data?
               </h2>
             </header>
 
             {/* „Sprechblase“ – mittig zentriert */}
             <div className="mt-8 flex justify-center">
-              <p className="font-rajdhani max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-10 py-2 text-center text-sm leading-relaxed text-slate-100 italic shadow-[0_0_35px_rgba(56,189,248,0.7)]">
+              <p className="font-rajdhani pointer-events-none max-w-md rounded-2xl border border-cyan-400/60 bg-slate-900/90 px-10 py-2 text-center text-sm leading-relaxed text-slate-100 italic shadow-[0_0_35px_rgba(56,189,248,0.7)] select-none">
                 No backup. Need to be sure...
               </p>
             </div>

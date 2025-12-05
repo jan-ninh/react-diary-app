@@ -14,7 +14,7 @@ const Buttons = ({ onDeleteAll, onOpenModal, isDeleteDisabled }) => {
     " disabled:translate-y-0 " +
     " disabled:cursor-not-allowed " +
     " disabled:bg-slate-800 " +
-    " disabled:text-slate-400 " +
+    " disabled:text-slate-700 " +
     " disabled:border-slate-600 " +
     " disabled:shadow-[0_0_12px_rgba(15,23,42,0.9)]";
 
