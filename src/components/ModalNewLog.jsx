@@ -60,15 +60,15 @@ function ModalNewLog({ onClose, onSave, entries }) {
             <img
               src={cyberAgent}
               alt="Cyber operative"
-              className="pointer-events-none relative z-10 h-full w-full object-cover opacity-80 mix-blend-screen"
+              className="pointer-events-none relative z-10 h-full w-full object-cover opacity-80 mix-blend-screen select-none"
             />
 
             {/* Text-Layer unten links */}
             <div className="absolute right-4 bottom-4 left-4 z-20">
-              <p className="font-rajdhani text-xs tracking-[0.35em] text-slate-900/80">
+              <p className="font-rajdhani pointer-events-none text-xs tracking-[0.35em] text-slate-900/80 select-none">
                 CYBERNODE 2077
               </p>
-              <p className="font-rajdhani text-sm text-slate-900 uppercase">
+              <p className="font-rajdhani pointer-events-none text-sm text-slate-900 uppercase select-none">
                 New Data Log Entry
               </p>
             </div>

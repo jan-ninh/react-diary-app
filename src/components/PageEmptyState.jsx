@@ -8,7 +8,7 @@ const PageEmptyState = () => {
   const [displayMessage, setDisplayMessage] = useState(DISPLAY_MESSAGE_01);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setIsVisible(true), 2000);
+    const fadeTimer = setTimeout(() => setIsVisible(true), 850);
     const textTimer = setTimeout(() => {
       setDisplayMessage(DISPLAY_MESSAGE_02);
     }, 8200);
@@ -26,7 +26,7 @@ const PageEmptyState = () => {
       }`}
     >
       <span
-        className="material-symbols-outlined thin mb-3 animate-ping animate-spin text-gray-300 [animation-duration:10s]"
+        className="material-symbols-outlined thin pointer-events-none mb-3 animate-ping animate-spin text-gray-300 select-none [animation-duration:10s]"
         style={{
           fontSize: "90px",
           fontVariationSettings: '"FILL" 0, "wght" 100, "GRAD" 0, "opsz" 24',
@@ -35,7 +35,7 @@ const PageEmptyState = () => {
         automation
       </span>
 
-      <p className="font-audiowide animate-cyber-pulse text-center text-sm font-semibold whitespace-pre-line text-gray-300 uppercase italic">
+      <p className="font-audiowide animate-cyber-pulse pointer-events-none text-center text-sm font-semibold whitespace-pre-line text-gray-300 uppercase italic select-none">
         {displayMessage}
       </p>
     </div>
